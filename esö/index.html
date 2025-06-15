@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Beni Affet</title>
+<style>
+  /* Full ekran arka plan koydum */
+  body, html {
+    margin: 0; padding: 0; height: 100%;
+    background: linear-gradient(135deg, #1a001a, #330033);
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Sol ve sağ üst foto büyük ve parlak */
+  .corner-photo {
+    position: fixed;
+    top: 10px;
+    width: 290px;
+    height: 290px;
+    border-radius: 25px;
+    box-shadow: 0 0 25px #ff3d7f;
+    object-fit: cover;
+    border: 3px solid #ff2e63;
+  }
+  .corner-photo.left {
+    left: 10px;
+  }
+  .corner-photo.right {
+    right: 10px;
+  }
+
+  /* Ortadaki video geniş ve yüksek */
+  .center-video {
+    width: 85vw;
+    max-width: 900px;
+    height: 60vh;
+    max-height: 600px;
+    border-radius: 25px;
+    box-shadow: 0 0 50px #ff2e63;
+    object-fit: cover;
+    margin-bottom: 40px;
+  }
+
+  /* Beni Affet buton büyük, okunaklı, kontrastlı */
+  #affetBtn {
+    font-size: 70px;
+    font-weight: 900;
+    padding: 20px 60px;
+    color: #fff;
+    background: #ff2e63;
+    border-radius: 60px;
+    box-shadow: 0 0 30px #ff2e63;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.3s ease, transform 0.25s ease;
+    text-align: center;
+    width: fit-content;
+  }
+  #affetBtn:hover {
+    background: #ff597d;
+    transform: scale(1.1);
+  }
+</style>
+</head>
+<body>
+
+<img src="sol-foto.jpg" alt="Sol Fotoğraf" class="corner-photo left" />
+<img src="sag-foto.jpg" alt="Sağ Fotoğraf" class="corner-photo right" />
+
+<video class="center-video" src="video.mp4" autoplay muted loop playsinline></video>
+
+<div id="affetBtn">Beni Affet</div>
+<button id="müzikBtn">🎵 Müziği Başlat</button>
+
+
+<audio id="bgMusic" src="music.mp3" autoplay loop></audio>
+
+<script>
+  // Buton tıklayınca WhatsApp açar, mesaj hazır
+  document.getElementById('affetBtn').addEventListener('click', () => {
+    const mesaj = encodeURIComponent("Seni seviyorum ❤️");
+    const numara = "905539772378"; // Esma'nın numarası
+    const url = `https://wa.me/${numara}?text=${mesaj}`;
+    window.open(url, '_blank');
+  });
+
+  // Müzik otomatik çalması için tarayıcı engellerse logla
+  const audio = document.getElementById('bgMusic');
+  audio.play().catch(() => {
+    console.log("Otomatik müzik engellendi, kullanıcı etkileşimi gerek.");
+  });
+</script>
+
+</body>
+</html>
